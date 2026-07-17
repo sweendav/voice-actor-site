@@ -367,15 +367,16 @@
     <div class="player-row">
       <button class="play-btn" id="playBtn" aria-label="Play signature reel" aria-pressed="false">▶</button>
       <div class="player-info">
-        <div class="kicker">Now Playing — Signature Reel / On Camera &amp; Voice</div>
-        <div class="player-title">"Nocturne, for Brand &amp; Voice"</div>
-        <svg class="waveform" data-bars="84" data-accent-frac="0.35" height="52" preserveAspectRatio="none" aria-hidden="true"></svg>
+        <div class="kicker" id="playerKicker">Now Playing — Signature Reel / Commercial</div>
+        <div class="player-title" id="playerTitle">Commercial Voiceover</div>
+        <svg class="waveform" id="heroWave" data-bars="84" height="52" preserveAspectRatio="none" aria-hidden="true"></svg>
         <div class="player-times">
-          <span>00:42</span>
-          <span>— WAV · 48kHz · Broadcast ready —</span>
-          <span>02:14</span>
+          <span id="playerCur">0:00</span>
+          <span id="playerFmt">— MP3 · Demo reel —</span>
+          <span id="playerDur">1:46</span>
         </div>
       </div>
+      <audio id="reelAudio" preload="metadata"></audio>
     </div>
   </section>
 
@@ -383,7 +384,7 @@
   <section class="reels" id="reels">
     <div class="section-head">
       <h2>The Reels</h2>
-      <span class="kicker" style="margin:0">Index / Five Chapters</span>
+      <span class="kicker" style="margin:0">Index / Two Chapters</span>
     </div>
     <div id="reelList"></div>
   </section>
@@ -518,43 +519,125 @@
     return svg;
   }
 
-  function setWaveformState(svg, playing) {
-    svg.classList.toggle('playing', !!playing);
+  // Paint a waveform: bars left of `progress` (0..1) read as accent, the rest as base.
+  function paintWaveform(svg, progress, active) {
     var rects = svg.querySelectorAll('rect');
     for (var i = 0; i < rects.length; i++) {
-      rects[i].setAttribute('opacity', playing ? 0.95 : 0.55);
+      var played = rects.length ? (i / rects.length) < progress : false;
+      rects[i].setAttribute('fill', played ? T.accent : T.ink);
+      rects[i].setAttribute('opacity', active ? (played ? 0.95 : 0.4) : 0.55);
     }
   }
+
+  function setWaveformState(svg, isPlaying) {
+    svg.classList.toggle('playing', !!isPlaying);
+  }
+
+  function fmtTime(sec) {
+    if (!isFinite(sec) || sec < 0) sec = 0;
+    var m = Math.floor(sec / 60), s = Math.floor(sec % 60);
+    return m + ':' + (s < 10 ? '0' : '') + s;
+  }
+
+  // ---- Reels ----
+  var reelData = [
+    { id: 'comm', no: '01', label: 'Commercial', dur: '1:46',
+      desc: 'Brand spots &amp; narration reads', title: 'Commercial Voiceover',
+      src: 'assets/reel-commercial.mp3' },
+    { id: 'char', no: '02', label: 'Character', dur: '1:19',
+      desc: 'Animation &amp; video games', title: 'Character Voiceover',
+      src: 'assets/reel-character.mp3' }
+  ];
+  var activeReel = 'comm';
 
   // ---- Signature reel player ----
   var playing = false;
   var playBtn = document.getElementById('playBtn');
-  var heroWave = document.querySelector('.player .waveform');
+  var heroWave = document.getElementById('heroWave');
+  var audio = document.getElementById('reelAudio');
+  var elKicker = document.getElementById('playerKicker');
+  var elTitle = document.getElementById('playerTitle');
+  var elCur = document.getElementById('playerCur');
+  var elDur = document.getElementById('playerDur');
   buildWaveform(heroWave);
 
+  function current() {
+    return reelData.filter(function (r) { return r.id === activeReel; })[0];
+  }
+
+  function progress() {
+    return (audio.duration && isFinite(audio.duration))
+      ? audio.currentTime / audio.duration : 0;
+  }
+
   function renderHero() {
+    var r = current();
+    var p = progress();
     playBtn.textContent = playing ? '⏸' : '▶';
     playBtn.classList.toggle('playing', playing);
     playBtn.setAttribute('aria-pressed', String(playing));
+    playBtn.setAttribute('aria-label', (playing ? 'Pause ' : 'Play ') + r.label + ' reel');
+    elKicker.textContent = (playing ? 'Now Playing' : 'Signature Reel') + ' — ' + r.label;
+    elTitle.textContent = r.title;
+    elCur.textContent = fmtTime(audio.currentTime);
+    elDur.textContent = (audio.duration && isFinite(audio.duration))
+      ? fmtTime(audio.duration) : r.dur;
+    paintWaveform(heroWave, p, playing);
     setWaveformState(heroWave, playing);
-    // reel waveforms follow the active reel + global playing state
-    reelData.forEach(function (r) {
-      if (r.wave) setWaveformState(r.wave, playing && r.id === activeReel);
+    reelData.forEach(function (x) {
+      var on = x.id === activeReel;
+      x.el.classList.toggle('active', on);
+      paintWaveform(x.wave, on ? p : 0, playing && on);
+      setWaveformState(x.wave, playing && on);
     });
   }
-  playBtn.addEventListener('click', function () { playing = !playing; renderHero(); });
+
+  function loadReel(id, autoplay) {
+    var wasSame = id === activeReel;
+    activeReel = id;
+    if (!wasSame) {
+      audio.src = current().src;
+      audio.currentTime = 0;
+    }
+    if (autoplay) {
+      audio.play().then(function () {
+        playing = true; renderHero();
+      })['catch'](function () {
+        playing = false; renderHero();
+      });
+    } else {
+      renderHero();
+    }
+  }
+
+  playBtn.addEventListener('click', function () {
+    if (playing) { audio.pause(); }
+    else { loadReel(activeReel, true); }
+  });
+
+  audio.addEventListener('play', function () { playing = true; renderHero(); });
+  audio.addEventListener('pause', function () { playing = false; renderHero(); });
+  audio.addEventListener('timeupdate', renderHero);
+  audio.addEventListener('loadedmetadata', renderHero);
+  audio.addEventListener('ended', function () {
+    playing = false; audio.currentTime = 0; renderHero();
+  });
+  audio.addEventListener('error', function () {
+    playing = false;
+    elTitle.textContent = current().title + ' — unavailable';
+    renderHero();
+  });
+
+  // Seek by clicking the hero waveform
+  heroWave.addEventListener('click', function (e) {
+    if (!audio.duration || !isFinite(audio.duration)) return;
+    var box = heroWave.getBoundingClientRect();
+    audio.currentTime = Math.max(0, Math.min(1, (e.clientX - box.left) / box.width)) * audio.duration;
+    renderHero();
+  });
 
   // ---- Reels index ----
-  var reelData = [
-    { id: 'ocam', no: '01', label: 'On Camera',   dur: '1:58', desc: 'Film, TV, commercial & medical/industrial' },
-    { id: 'comm', no: '02', label: 'Commercial',  dur: '1:42', desc: 'National & regional brand spots' },
-    { id: 'anim', no: '03', label: 'Animation',   dur: '2:08', desc: 'Character voice montage' },
-    { id: 'game', no: '04', label: 'Video Games', dur: '1:56', desc: 'Combat & dialogue range' },
-    { id: 'narr', no: '05', label: 'Narration',   dur: '2:21', desc: 'Audiobook & long-form' }
-  ];
-  var activeReel = 'comm';
   var list = document.getElementById('reelList');
-
   reelData.forEach(function (r) {
     var row = document.createElement('button');
     row.className = 'reel' + (r.id === activeReel ? ' active' : '');
@@ -569,20 +652,13 @@
     buildWaveform(svg);
     r.el = row; r.wave = svg;
     row.addEventListener('click', function () {
-      activeReel = r.id;
-      reelData.forEach(function (x) {
-        var on = x.id === activeReel;
-        x.el.classList.toggle('active', on);
-        // recolor bars for active/inactive
-        x.wave.querySelectorAll('rect').forEach(function (rect) {
-          var isAccentBar = rect.getAttribute('data-accent-bar') === '1';
-          rect.setAttribute('fill', on ? T.accent : (isAccentBar ? T.accent : T.ink));
-        });
-        setWaveformState(x.wave, playing && on);
-      });
+      if (r.id === activeReel && playing) { audio.pause(); return; }
+      loadReel(r.id, true);
     });
     list.appendChild(row);
   });
+
+  audio.src = current().src;
 
   // ---- Range marquee (tripled for seamless -33.33% loop) ----
   var phrase =
