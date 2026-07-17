@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Caitlin Hardesty — Actor &amp; Voice Actor</title>
-<meta name="description" content="Caitlin Hardesty — a Los Angeles-based actor and voice actor. On-camera and voiceover reels, press kit, and booking." />
+<meta name="description" content="Caitlin Hardesty — a Los Angeles-based actor and voice actor. Commercial and character voiceover reels, and booking." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -226,6 +226,9 @@
   .split { padding: 72px var(--pad-x); display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
   .split .left { padding-right: 60px; border-right: 1px solid var(--ink); }
   .split .right { padding-left: 60px; }
+  /* Single-column when the press kit is hidden */
+  .split.solo { grid-template-columns: 1fr; }
+  .split.solo .right { padding-left: 0; }
   .split h3 {
     font-family: var(--display); font-size: clamp(36px, 4.5vw, 52px); font-style: italic;
     font-weight: 400; margin: 12px 0 20px; letter-spacing: -0.02em;
@@ -245,7 +248,7 @@
   .kit-btn:hover .size { color: rgba(241,234,216,0.6); }
 
   .contact-row {
-    display: grid; grid-template-columns: 110px 1fr; gap: 24px;
+    display: grid; grid-template-columns: 170px 1fr; gap: 24px;
     padding: 14px 0; border-bottom: 1px solid rgba(23,19,16,0.2); align-items: baseline;
   }
   .contact-row .label {
@@ -293,6 +296,9 @@
     .bio-grid { grid-template-columns: 1fr; gap: 28px; }
     .bio-portrait { max-width: 280px; }
     .bio-body { columns: 1; }
+    /* Stack label over address — an email has no spaces and cannot wrap */
+    .contact-row { grid-template-columns: 1fr; gap: 6px; }
+    .contact-row .value { font-size: 17px; }
     .split { grid-template-columns: 1fr; gap: 48px; }
     .split .left { padding-right: 0; border-right: none; border-bottom: 1px solid var(--ink); padding-bottom: 48px; }
     .split .right { padding-left: 0; }
@@ -313,8 +319,7 @@
     <nav>
       <a href="#reels">Reels</a>
       <a href="#bio">Bio</a>
-      <a href="#presskit">Press Kit</a>
-      <a href="#booking">Booking</a>
+      <a href="#booking">Contact</a>
     </nav>
     <span class="edge">Est. MMXXI</span>
   </header>
@@ -428,7 +433,11 @@
   </section>
 
   <!-- ============ PRESS KIT + CONTACT ============ -->
-  <section class="split">
+  <section class="split solo">
+    <!-- PRESS KIT — parked until there is a real kit to link to.
+         To restore: uncomment this block, drop `solo` from .split above,
+         and put the Press Kit link back in the masthead nav.
+         The ZIP size below is placeholder copy from the design mockup.
     <div class="left" id="presskit">
       <div class="kicker">Feature II</div>
       <h3>The Press Kit.</h3>
@@ -437,29 +446,18 @@
         assets, and broadcast-ready reel files. Everything you need, nothing you don't.
       </p>
       <button class="kit-btn">
-        Download Press Kit <span class="dl">↓</span>
-        <span class="size">[ ZIP · 38MB ]</span>
+        Download Press Kit <span class="dl">&#8595;</span>
+        <span class="size">[ ZIP &middot; 38MB ]</span>
       </button>
     </div>
+    -->
     <div class="right" id="booking">
-      <div class="kicker">Feature III</div>
+      <div class="kicker">Feature II</div>
       <h3>Correspondence.</h3>
       <div>
         <div class="contact-row">
-          <span class="label">Booking</span>
-          <span class="value"><a href="mailto:agent@thevoiceagency.com">agent@thevoiceagency.com</a> <span class="arrow">→</span></span>
-        </div>
-        <div class="contact-row">
-          <span class="label">Direct</span>
-          <span class="value"><a href="mailto:hello@caitlin.voice">hello@caitlin.voice</a> <span class="arrow">→</span></span>
-        </div>
-        <div class="contact-row">
-          <span class="label">Studio</span>
-          <span class="value">Source Connect · ipDTL <span class="arrow">→</span></span>
-        </div>
-        <div class="contact-row">
-          <span class="label">Social</span>
-          <span class="value">@caitlin.vo — Instagram, Bluesky, YouTube <span class="arrow">→</span></span>
+          <span class="label">Booking &amp; Direct</span>
+          <span class="value"><a href="mailto:caitlin.hardesty@gmail.com">caitlin.hardesty@gmail.com</a> <span class="arrow">→</span></span>
         </div>
       </div>
     </div>
@@ -469,7 +467,11 @@
   <footer class="colophon">
     <span>© MMXXVI — Caitlin Hardesty</span>
     <span>Set in Bodoni Moda &amp; IBM Plex Mono</span>
+    <!-- Socials were mockup filler (the invented handle @caitlin.vo).
+         Restore with real profile links when they exist.
     <span>Instagram / Bluesky / YouTube</span>
+    -->
+    <span>Los Angeles, CA</span>
   </footer>
 
 <script>
