@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Caitlin Hardesty — Actor &amp; Voice Actor</title>
+<meta name="description" content="Caitlin Hardesty — a Los Angeles-based actor and voice actor. On-camera and voiceover reels, press kit, and booking." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --cream: #f1ead8;
+    --ink: #171310;
+    --dim: #574835;
+    --accent: #c8371d;
+    --display: "Bodoni Moda", "Didot", Georgia, serif;
+    --body: "Newsreader", Georgia, serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+    --pad-x: 48px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    overflow-x: hidden;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+
+  .kicker {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dim);
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  /* ---- Portrait figures: image over a warm placeholder gradient ---- */
+  .portrait {
+    position: relative;
+    background:
+      linear-gradient(135deg, #d8cbaf 0%, #c9b895 45%, #b6a074 100%);
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+  }
+  .portrait::after {
+    content: "Portrait";
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: rgba(23,19,16,0.35);
+  }
+  .portrait.has-image::after { display: none; }
+
+  /* ============ MASTHEAD ============ */
+  .masthead {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 16px; flex-wrap: wrap;
+    padding: 28px var(--pad-x);
+    border-bottom: 1px solid var(--ink);
+    font-family: var(--mono); font-size: 13px; letter-spacing: 0.12em;
+    text-transform: uppercase; font-weight: 500;
+    position: sticky; top: 0; z-index: 20;
+    background: var(--cream);
+  }
+  .masthead nav { display: flex; gap: 24px; }
+  .masthead nav a { text-decoration: none; cursor: pointer; }
+  .masthead nav a:hover { color: var(--accent); }
+  .masthead .edge { white-space: nowrap; }
+
+  /* ============ HERO ============ */
+  .hero { padding: 64px var(--pad-x) 48px; }
+  .hero-meta {
+    display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+    font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.13em;
+    text-transform: uppercase; color: var(--dim); font-weight: 500;
+    margin-bottom: 32px;
+  }
+  .cover {
+    display: grid; grid-template-columns: 440px 1fr; gap: 48px;
+    align-items: end;
+  }
+  .cover-portrait { aspect-ratio: 2 / 3; filter: contrast(1.02) saturate(0.95); }
+  .cover-portrait .plate {
+    position: absolute; top: 16px; left: 16px;
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.2em;
+    color: var(--cream); text-transform: uppercase;
+    background: var(--ink); padding: 8px 12px; font-weight: 500; z-index: 2;
+  }
+  .cover-copy { padding-bottom: 8px; }
+  h1.wordmark {
+    font-family: var(--display); font-weight: 400;
+    font-size: clamp(56px, 10vw, 148px);
+    line-height: 0.88; letter-spacing: -0.035em; margin: 0; font-style: italic;
+  }
+  h1.wordmark .dot { color: var(--accent); font-style: normal; }
+  .lede {
+    font-family: var(--display); font-size: clamp(22px, 3vw, 30px);
+    line-height: 1.3; font-weight: 400; margin: 32px 0 0; max-width: 32ch;
+  }
+  .lede em { color: var(--accent); }
+
+  .hero-facts {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;
+    margin-top: 56px; padding-top: 24px;
+    border-top: 1px solid rgba(23,19,16,0.2);
+  }
+  .hero-facts .val { font-size: 18px; line-height: 1.6; }
+  .dotmark { color: var(--accent); }
+
+  /* ============ PLAYER ============ */
+  .player {
+    padding: 40px var(--pad-x) 60px;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+  }
+  .player-row { display: flex; align-items: center; gap: 32px; }
+  .play-btn {
+    width: 92px; height: 92px; border-radius: 50%;
+    background: var(--accent); color: var(--cream);
+    border: none; cursor: pointer; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--display); font-size: 34px;
+    transition: box-shadow 0.2s, transform 0.1s;
+  }
+  .play-btn:hover { transform: scale(1.04); }
+  .play-btn.playing { box-shadow: 0 0 0 8px rgba(200,55,29,0.13); }
+  .player-info { flex: 1; min-width: 0; }
+  .player-title {
+    font-family: var(--display); font-size: clamp(28px, 4vw, 44px);
+    font-style: italic; line-height: 1.05; margin: 8px 0 18px;
+  }
+  .player-times {
+    display: flex; justify-content: space-between; gap: 12px;
+    font-family: var(--mono); font-size: 13px; color: var(--dim);
+    margin-top: 12px; letter-spacing: 0.08em; font-weight: 500;
+  }
+
+  /* ============ WAVEFORM ============ */
+  .waveform { display: block; width: 100%; }
+  @keyframes wfBar {
+    0%   { transform: scaleY(0.45); }
+    100% { transform: scaleY(1.05); }
+  }
+  .waveform rect { transition: opacity 0.2s; }
+  .waveform.playing rect { animation: wfBar 0.9s ease-in-out infinite alternate; }
+
+  /* ============ REELS ============ */
+  .reels { padding: 72px var(--pad-x); }
+  .section-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 20px; margin-bottom: 40px;
+    border-bottom: 1px solid var(--ink); padding-bottom: 20px;
+  }
+  .section-head h2 {
+    font-family: var(--display); font-size: clamp(36px, 5vw, 54px);
+    font-weight: 400; margin: 0; letter-spacing: -0.02em;
+  }
+  .reel {
+    display: grid; grid-template-columns: 80px 1.4fr 2fr 180px 80px;
+    align-items: center; gap: 24px;
+    padding: 26px 0; border-bottom: 1px solid rgba(23,19,16,0.2);
+    cursor: pointer; color: var(--ink);
+    transition: color 0.2s; background: none; width: 100%; text-align: left;
+    font: inherit; border-left: none; border-right: none; border-top: none;
+  }
+  .reel:hover { color: var(--accent); }
+  .reel.active { color: var(--accent); }
+  .reel-no { font-family: var(--mono); font-size: 14px; letter-spacing: 0.08em; font-weight: 500; }
+  .reel-label {
+    font-family: var(--display); font-size: clamp(26px, 3vw, 34px);
+    font-style: italic; font-weight: 400; letter-spacing: -0.02em;
+  }
+  .reel-desc { font-size: 17px; color: var(--dim); line-height: 1.45; }
+  .reel.active .reel-desc { color: var(--accent); }
+  .reel-dur { font-family: var(--mono); font-size: 14px; text-align: right; letter-spacing: 0.08em; font-weight: 500; }
+
+  /* ============ BIO ============ */
+  .bio { padding: 72px var(--pad-x); background: var(--ink); color: var(--cream); }
+  .bio-grid { display: grid; grid-template-columns: 360px 1fr; gap: 64px; align-items: start; }
+  .bio-portrait { aspect-ratio: 2 / 3; margin-bottom: 16px; }
+  .bio-portrait.portrait { background: linear-gradient(135deg, #2a231d, #40342a, #55432f); }
+  .bio-portrait.portrait::after { color: rgba(241,234,216,0.3); }
+  .bio-caption {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.2em;
+    color: var(--accent); text-transform: uppercase; font-weight: 500;
+  }
+  .bio h3.about {
+    font-family: var(--display); font-size: clamp(48px, 6.5vw, 72px); font-weight: 400;
+    font-style: italic; line-height: 0.95; margin: 16px 0 28px;
+  }
+  .bio h3.about .accent { color: var(--accent); }
+  .bio-body { font-size: 19px; line-height: 1.7; columns: 2; column-gap: 44px; }
+  .bio-body p { margin: 0 0 16px; }
+  .bio-body p:last-child { margin-bottom: 0; }
+  .dropcap {
+    font-family: var(--display); font-size: 64px; float: left;
+    line-height: 0.85; margin: 6px 10px 0 0; color: var(--accent);
+  }
+
+  /* ============ RANGE MARQUEE ============ */
+  .range { padding: 36px 0; border-bottom: 1px solid var(--ink); overflow: hidden; white-space: nowrap; }
+  .range .track {
+    font-family: var(--display); font-style: italic; font-size: clamp(28px, 4.5vw, 44px);
+    display: inline-block; animation: lvMarquee 40s linear infinite;
+  }
+  .range .star { color: var(--accent); }
+  @keyframes lvMarquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-33.33%); }
+  }
+
+  /* ============ PRESS KIT + CONTACT ============ */
+  .split { padding: 72px var(--pad-x); display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .split .left { padding-right: 60px; border-right: 1px solid var(--ink); }
+  .split .right { padding-left: 60px; }
+  .split h3 {
+    font-family: var(--display); font-size: clamp(36px, 4.5vw, 52px); font-style: italic;
+    font-weight: 400; margin: 12px 0 20px; letter-spacing: -0.02em;
+  }
+  .split p { font-size: 18px; line-height: 1.6; max-width: 38ch; margin: 0 0 32px; }
+  .kit-btn {
+    background: none; border: 1.5px solid var(--ink); padding: 18px 32px;
+    font-family: var(--mono); font-size: 13px; letter-spacing: 0.18em;
+    text-transform: uppercase; cursor: pointer; color: var(--ink);
+    display: inline-flex; gap: 12px; align-items: center; font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+  }
+  .kit-btn:hover { background: var(--ink); color: var(--cream); }
+  .kit-btn .dl { color: var(--accent); }
+  .kit-btn:hover .dl { color: var(--cream); }
+  .kit-btn .size { color: var(--dim); margin-left: 8px; }
+  .kit-btn:hover .size { color: rgba(241,234,216,0.6); }
+
+  .contact-row {
+    display: grid; grid-template-columns: 110px 1fr; gap: 24px;
+    padding: 14px 0; border-bottom: 1px solid rgba(23,19,16,0.2); align-items: baseline;
+  }
+  .contact-row .label {
+    font-family: var(--mono); font-size: 13px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--dim); font-weight: 500;
+  }
+  .contact-row .value { font-size: 22px; font-family: var(--display); font-style: italic; }
+  .contact-row a { text-decoration: none; }
+  .contact-row a:hover { color: var(--accent); }
+  .contact-row .arrow { color: var(--accent); }
+
+  /* ============ FOOTER ============ */
+  .colophon {
+    padding: 40px var(--pad-x); border-top: 1px solid var(--ink);
+    font-family: var(--mono); font-size: 13px; letter-spacing: 0.16em;
+    text-transform: uppercase; display: flex; justify-content: space-between;
+    gap: 20px; flex-wrap: wrap; font-weight: 500;
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 1080px) {
+    .cover { grid-template-columns: 340px 1fr; gap: 32px; }
+    .hero-facts { grid-template-columns: 1fr 1fr; row-gap: 28px; }
+    .bio-grid { grid-template-columns: 280px 1fr; gap: 40px; }
+  }
+  @media (max-width: 760px) {
+    :root { --pad-x: 22px; }
+    .masthead { font-size: 11px; letter-spacing: 0.12em; gap: 10px; }
+    .masthead .edge { display: none; }
+    .masthead nav { gap: 16px; }
+    .hero { padding: 40px var(--pad-x) 36px; }
+    .hero-meta { flex-direction: column; font-size: 11px; letter-spacing: 0.12em; gap: 4px; margin-bottom: 24px; }
+    .cover { grid-template-columns: 1fr; gap: 28px; align-items: start; }
+    .cover-portrait { max-width: 320px; }
+    .hero-facts { grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
+    .player-row { flex-direction: column; align-items: flex-start; gap: 20px; }
+    .play-btn { width: 72px; height: 72px; font-size: 28px; }
+    .reel { grid-template-columns: 40px 1fr auto; grid-template-areas: "no label dur" "no desc desc" "no wave wave"; row-gap: 10px; column-gap: 14px; }
+    .reel-no { grid-area: no; }
+    .reel-label { grid-area: label; }
+    .reel-dur { grid-area: dur; }
+    .reel-desc { grid-area: desc; }
+    .reel .waveform { grid-area: wave; }
+    .bio { padding: 56px var(--pad-x); }
+    .bio-grid { grid-template-columns: 1fr; gap: 28px; }
+    .bio-portrait { max-width: 280px; }
+    .bio-body { columns: 1; }
+    .split { grid-template-columns: 1fr; gap: 48px; }
+    .split .left { padding-right: 0; border-right: none; border-bottom: 1px solid var(--ink); padding-bottom: 48px; }
+    .split .right { padding-left: 0; }
+    .colophon { flex-direction: column; gap: 8px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .waveform.playing rect { animation: none !important; }
+    .range .track { animation: none !important; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ============ MASTHEAD ============ -->
+  <header class="masthead">
+    <span class="edge">Vol. 01 — Spring&nbsp;'26</span>
+    <nav>
+      <a href="#reels">Reels</a>
+      <a href="#bio">Bio</a>
+      <a href="#presskit">Press Kit</a>
+      <a href="#booking">Booking</a>
+    </nav>
+    <span class="edge">Est. MMXXI</span>
+  </header>
+
+  <!-- ============ HERO / COVER ============ -->
+  <section class="hero">
+    <div class="hero-meta">
+      <span>№ 001 — The Voice Issue</span>
+      <span>Caitlin Hardesty / Actor &amp; Voice Actor</span>
+      <span>Feature ↓</span>
+    </div>
+
+    <div class="cover">
+      <figure class="portrait cover-portrait" style="margin:0" data-img="assets/caitlin-headshot-primary.jpeg">
+        <figcaption class="plate">Pl. I — Portrait, 2026</figcaption>
+      </figure>
+
+      <div class="cover-copy">
+        <div class="kicker" style="color: var(--accent)">On Camera &amp; On Mic</div>
+        <h1 class="wordmark">Caitlin<br />Hardesty<span class="dot">.</span></h1>
+        <p class="lede">
+          An actor &amp; voice actor for the moments that
+          <em>linger</em> — on screen, in the booth, and the in-between.
+        </p>
+      </div>
+    </div>
+
+    <div class="hero-facts">
+      <div>
+        <div class="kicker">On Camera</div>
+        <div class="val">Film · Television<br />Commercial · Medical / Industrial</div>
+      </div>
+      <div>
+        <div class="kicker">On Mic</div>
+        <div class="val">Commercial · Animation<br />Video Games · Narration</div>
+      </div>
+      <div>
+        <div class="kicker">Based</div>
+        <div class="val">Los Angeles, CA<br /><span class="dotmark">●</span> Booking now open</div>
+      </div>
+      <div>
+        <div class="kicker">Training</div>
+        <div class="val">David Babich Studio<br />Burbank &amp; Hollywood</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HERO PLAYER ============ -->
+  <section class="player">
+    <div class="player-row">
+      <button class="play-btn" id="playBtn" aria-label="Play signature reel" aria-pressed="false">▶</button>
+      <div class="player-info">
+        <div class="kicker">Now Playing — Signature Reel / On Camera &amp; Voice</div>
+        <div class="player-title">"Nocturne, for Brand &amp; Voice"</div>
+        <svg class="waveform" data-bars="84" data-accent-frac="0.35" height="52" preserveAspectRatio="none" aria-hidden="true"></svg>
+        <div class="player-times">
+          <span>00:42</span>
+          <span>— WAV · 48kHz · Broadcast ready —</span>
+          <span>02:14</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ REELS / INDEX ============ -->
+  <section class="reels" id="reels">
+    <div class="section-head">
+      <h2>The Reels</h2>
+      <span class="kicker" style="margin:0">Index / Five Chapters</span>
+    </div>
+    <div id="reelList"></div>
+  </section>
+
+  <!-- ============ FEATURE / BIO ============ -->
+  <section class="bio" id="bio">
+    <div class="bio-grid">
+      <div>
+        <figure class="portrait bio-portrait" style="margin:0" data-img="assets/caitlin-headshot-medical.jpeg"></figure>
+        <div class="bio-caption">Pl. II — In character, medical</div>
+      </div>
+      <div>
+        <div class="kicker" style="color: var(--accent)">Feature I — The Artist</div>
+        <h3 class="about">About<br /><span class="accent">her.</span></h3>
+        <div class="bio-body">
+          <p>
+            <span class="dropcap">C</span>aitlin is a Los Angeles-based actor and voice
+            actor at the start of her career — and all the hungrier for it. Her
+            specialty is colorful, characterful voiceover: the mischievous sidekick,
+            the over-caffeinated narrator, the villain who's having entirely too much fun.
+          </p>
+          <p>
+            She trains in voiceover and on-camera acting with David Babich in Burbank
+            and Hollywood, where the weekly scene and booth work keeps the instrument
+            warm and the range growing — from commercial reads to animation, games,
+            and narration.
+          </p>
+          <p>
+            Between classes she reads biography, drinks coffee black, and keeps a
+            running list of words she wants to say out loud one day.
+            <em>Petrichor</em> was a recent favorite.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RANGE STRIP ============ -->
+  <section class="range" aria-hidden="true">
+    <div class="track" id="marquee"></div>
+  </section>
+
+  <!-- ============ PRESS KIT + CONTACT ============ -->
+  <section class="split">
+    <div class="left" id="presskit">
+      <div class="kicker">Feature II</div>
+      <h3>The Press Kit.</h3>
+      <p>
+        A folder of high-res headshots, a bio in three lengths, a one-sheet, logo
+        assets, and broadcast-ready reel files. Everything you need, nothing you don't.
+      </p>
+      <button class="kit-btn">
+        Download Press Kit <span class="dl">↓</span>
+        <span class="size">[ ZIP · 38MB ]</span>
+      </button>
+    </div>
+    <div class="right" id="booking">
+      <div class="kicker">Feature III</div>
+      <h3>Correspondence.</h3>
+      <div>
+        <div class="contact-row">
+          <span class="label">Booking</span>
+          <span class="value"><a href="mailto:agent@thevoiceagency.com">agent@thevoiceagency.com</a> <span class="arrow">→</span></span>
+        </div>
+        <div class="contact-row">
+          <span class="label">Direct</span>
+          <span class="value"><a href="mailto:hello@caitlin.voice">hello@caitlin.voice</a> <span class="arrow">→</span></span>
+        </div>
+        <div class="contact-row">
+          <span class="label">Studio</span>
+          <span class="value">Source Connect · ipDTL <span class="arrow">→</span></span>
+        </div>
+        <div class="contact-row">
+          <span class="label">Social</span>
+          <span class="value">@caitlin.vo — Instagram, Bluesky, YouTube <span class="arrow">→</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COLOPHON / SOCIAL ============ -->
+  <footer class="colophon">
+    <span>© MMXXVI — Caitlin Hardesty</span>
+    <span>Set in Bodoni Moda &amp; IBM Plex Mono</span>
+    <span>Instagram / Bluesky / YouTube</span>
+  </footer>
+
+<script>
+(function () {
+  var T = { ink: '#171310', accent: '#c8371d' };
+
+  // ---- Waveform builder (mirrors the source Waveform component) ----
+  function barHeights(bars) {
+    var seed = bars, out = [];
+    for (var i = 0; i < bars; i++) {
+      var a = Math.sin(i * 0.42 + seed) * 0.5 + 0.5;
+      var b = Math.sin(i * 1.3 + seed * 0.7) * 0.3 + 0.5;
+      var env = Math.sin((i / bars) * Math.PI) * 0.7 + 0.3;
+      out.push(Math.max(0.08, Math.min(1, (a * 0.6 + b * 0.4) * env)));
+    }
+    return out;
+  }
+
+  var SVGNS = 'http://www.w3.org/2000/svg';
+  function buildWaveform(svg) {
+    var bars = parseInt(svg.getAttribute('data-bars') || '64', 10);
+    var compact = svg.getAttribute('data-compact') === 'true';
+    var accentFrac = parseFloat(svg.getAttribute('data-accent-frac') || '0');
+    var height = compact ? 28 : 52;
+    var color = svg.getAttribute('data-color') || T.ink;
+    var accent = svg.getAttribute('data-accent') || T.accent;
+    svg.setAttribute('viewBox', '0 0 ' + (bars * 4) + ' ' + height);
+    svg.setAttribute('width', '100%');
+    svg.setAttribute('height', height);
+    var hs = barHeights(bars);
+    var frag = document.createDocumentFragment();
+    for (var i = 0; i < bars; i++) {
+      var barH = hs[i] * height;
+      var rect = document.createElementNS(SVGNS, 'rect');
+      rect.setAttribute('x', i * 4);
+      rect.setAttribute('y', (height - barH) / 2);
+      rect.setAttribute('width', 2);
+      rect.setAttribute('height', barH);
+      var isAccent = i < bars * accentFrac;
+      rect.setAttribute('fill', isAccent ? accent : color);
+      rect.setAttribute('data-accent-bar', isAccent ? '1' : '0');
+      rect.style.transformOrigin = (i * 4 + 1) + 'px ' + (height / 2) + 'px';
+      rect.style.animationDelay = ((i % 8) * 0.08) + 's';
+      frag.appendChild(rect);
+    }
+    svg.appendChild(frag);
+    return svg;
+  }
+
+  function setWaveformState(svg, playing) {
+    svg.classList.toggle('playing', !!playing);
+    var rects = svg.querySelectorAll('rect');
+    for (var i = 0; i < rects.length; i++) {
+      rects[i].setAttribute('opacity', playing ? 0.95 : 0.55);
+    }
+  }
+
+  // ---- Signature reel player ----
+  var playing = false;
+  var playBtn = document.getElementById('playBtn');
+  var heroWave = document.querySelector('.player .waveform');
+  buildWaveform(heroWave);
+
+  function renderHero() {
+    playBtn.textContent = playing ? '⏸' : '▶';
+    playBtn.classList.toggle('playing', playing);
+    playBtn.setAttribute('aria-pressed', String(playing));
+    setWaveformState(heroWave, playing);
+    // reel waveforms follow the active reel + global playing state
+    reelData.forEach(function (r) {
+      if (r.wave) setWaveformState(r.wave, playing && r.id === activeReel);
+    });
+  }
+  playBtn.addEventListener('click', function () { playing = !playing; renderHero(); });
+
+  // ---- Reels index ----
+  var reelData = [
+    { id: 'ocam', no: '01', label: 'On Camera',   dur: '1:58', desc: 'Film, TV, commercial & medical/industrial' },
+    { id: 'comm', no: '02', label: 'Commercial',  dur: '1:42', desc: 'National & regional brand spots' },
+    { id: 'anim', no: '03', label: 'Animation',   dur: '2:08', desc: 'Character voice montage' },
+    { id: 'game', no: '04', label: 'Video Games', dur: '1:56', desc: 'Combat & dialogue range' },
+    { id: 'narr', no: '05', label: 'Narration',   dur: '2:21', desc: 'Audiobook & long-form' }
+  ];
+  var activeReel = 'comm';
+  var list = document.getElementById('reelList');
+
+  reelData.forEach(function (r) {
+    var row = document.createElement('button');
+    row.className = 'reel' + (r.id === activeReel ? ' active' : '');
+    row.type = 'button';
+    row.innerHTML =
+      '<span class="reel-no">' + r.no + '</span>' +
+      '<span class="reel-label">' + r.label + '</span>' +
+      '<span class="reel-desc">' + r.desc + '</span>' +
+      '<svg class="waveform" data-bars="40" data-compact="true" height="28" preserveAspectRatio="none" aria-hidden="true"></svg>' +
+      '<span class="reel-dur">' + r.dur + '</span>';
+    var svg = row.querySelector('.waveform');
+    buildWaveform(svg);
+    r.el = row; r.wave = svg;
+    row.addEventListener('click', function () {
+      activeReel = r.id;
+      reelData.forEach(function (x) {
+        var on = x.id === activeReel;
+        x.el.classList.toggle('active', on);
+        // recolor bars for active/inactive
+        x.wave.querySelectorAll('rect').forEach(function (rect) {
+          var isAccentBar = rect.getAttribute('data-accent-bar') === '1';
+          rect.setAttribute('fill', on ? T.accent : (isAccentBar ? T.accent : T.ink));
+        });
+        setWaveformState(x.wave, playing && on);
+      });
+    });
+    list.appendChild(row);
+  });
+
+  // ---- Range marquee (tripled for seamless -33.33% loop) ----
+  var phrase =
+    'Mischievous sidekicks&nbsp;·&nbsp;Warm narrators&nbsp;·&nbsp;' +
+    'Gleeful villains&nbsp;·&nbsp;Plucky heroines&nbsp;·&nbsp;' +
+    'Talking animals&nbsp;·&nbsp;Bedtime storytellers&nbsp;·&nbsp;' +
+    'Over-caffeinated announcers&nbsp;·&nbsp;<span class="star">★</span>&nbsp;';
+  document.getElementById('marquee').innerHTML = phrase + phrase + phrase;
+
+  // ---- Load portrait images if present (graceful fallback otherwise) ----
+  document.querySelectorAll('.portrait[data-img]').forEach(function (fig) {
+    var src = fig.getAttribute('data-img');
+    var probe = new Image();
+    probe.onload = function () {
+      fig.style.backgroundImage = 'url("' + src + '")';
+      fig.classList.add('has-image');
+    };
+    probe.src = src;
+  });
+
+  renderHero();
+})();
+</script>
+</body>
+</html>
